@@ -1,4 +1,4 @@
-
+//Write a C program to test whether given input is keyword or not 
 #include <stdio.h>
 #include <string.h>
 

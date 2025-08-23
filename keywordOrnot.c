@@ -1,4 +1,4 @@
-
+//Write a C program to simulate lexical analyzer for validating operators.
 #include <stdio.h>
 #include <string.h>
 

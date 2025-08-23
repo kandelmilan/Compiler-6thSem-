@@ -1,3 +1,4 @@
+//Write a program to test whether given identifier is valid or not 
 #include <stdio.h>
 #include <string.h> 
 
