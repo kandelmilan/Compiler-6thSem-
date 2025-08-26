@@ -16,7 +16,7 @@ int main() {
 
         if (line[0] == '/' && line[1] == '/')
             printf("Single-line comment\n");
-        else if (line[0] == '/' && line[1] == '*')
+        else if (line[0] == '/' && line[1] == '/')
             printf("Multi-line comment\n");
         else
             printf("Not a comment\n");

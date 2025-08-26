@@ -1,57 +1,66 @@
-//Write a program to test whether given identifier is valid or not 
 #include <stdio.h>
-#include <string.h> 
+#include <string.h>
+#include <ctype.h> // for isalpha, isdigit
 
-
-int isKeyword(char word[]) {
+// Function to check if a word is a C keyword
+int isKeyword(char word[])
+{
     char *keywords[] = {
-        "int","break","case","char","const","continue","while","do",
-        "double","else","enum","if","float","for"
-    };
-    int totalKeywords = 14;
+        "auto", "break", "case", "char", "const", "continue", "default", "do",
+        "double", "else", "enum", "extern", "float", "for", "goto", "if",
+        "int", "long", "register", "return", "short", "signed", "sizeof",
+        "static", "struct", "switch", "typedef", "union", "unsigned", "void",
+        "volatile", "while"};
+    int totalKeywords = 32; // total keywords in the array
 
-    for (int i = 0; i < totalKeywords; i++) {
+    for (int i = 0; i < totalKeywords; i++)
+    {
         if (strcmp(word, keywords[i]) == 0)
-            return 1; 
+            return 1; // it's a keyword
     }
-    return 0; 
+    return 0; // not a keyword
 }
 
-int main() {
+int main()
+{
     char id[100], choice[10];
     int valid, i;
 
-    do {
+    do
+    {
         printf("Enter an identifier: ");
         scanf("%s", id);
 
-        valid = 1; 
+        valid = 1;
 
-
-        if (!((id[0] >= 'a' && id[0] <= 'z') ||
-              (id[0] >= 'A' && id[0] <= 'Z') ||
-              (id[0] == '_'))) {
+        // Rule 1: first character must be a letter or underscore
+        if (!(isalpha(id[0]) || id[0] == '_'))
+        {
             valid = 0;
         }
 
-
-        for (i = 1; id[i] != '\0'; i++) {
-            if (!((id[i] >= 'a' && id[i] <= 'z') ||
-                  (id[i] >= 'A' && id[i] <= 'Z') ||
-                  (id[i] >= '0' && id[i] <= '9') ||
-                  (id[i] == '_'))) {
+        // Rule 2: remaining characters must be letters, digits, or underscore
+        for (i = 1; id[i] != '\0'; i++)
+        {
+            if (!(isalnum(id[i]) || id[i] == '_'))
+            {
                 valid = 0;
                 break;
             }
         }
 
-        // Rule 3: must not be a keyword from the list
-        if (isKeyword(id)) {
+        // Rule 3: must not be a keyword
+        if (isKeyword(id))
+        {
             valid = 0;
             printf("Invalid identifier (keyword)\n");
-        } else if (valid) {
+        }
+        else if (valid)
+        {
             printf("Valid identifier\n");
-        } else {
+        }
+        else
+        {
             printf("Invalid identifier\n");
         }
 
@@ -59,7 +68,7 @@ int main() {
         printf("Do you want to test another identifier? (yes/no): ");
         scanf("%s", choice);
 
-    } while (choice[0] == 'y' || choice[0] == 'Y');
+    } while (choice[0] == 'y' || choice[0] == 'N');
 
     printf("Thank you!\n");
     return 0;

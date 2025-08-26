@@ -1,32 +1,35 @@
-//Write a C program to simulate lexical analyzer for validating operators.
 #include <stdio.h>
 #include <string.h>
 
-int main() {
-    char word[50];
-    char choice;
-    int i, isKeyword;
-
-    // List of C keywords
+int isKeyword(const char *word) {
     const char *keywords[] = {
-       "int","break","case","char","const","continue","while","do",
-        "double","else","enum","if","float","for"
+        "auto", "break", "case", "char", "const", "continue", "default",
+        "do", "double", "else", "enum", "extern", "float", "for", "goto",
+        "if", "inline", "int", "long", "register", "restrict", "return",
+        "short", "signed", "sizeof", "static", "struct", "switch", "typedef",
+        "union", "unsigned", "void", "volatile", "while", "_Alignas",
+        "_Alignof", "_Atomic", "_Bool", "_Complex", "_Decimal128",
+        "_Decimal32", "_Decimal64", "_Generic", "_Imaginary", "_Noreturn",
+        "_Static_assert", "_Thread_local"
     };
-    int keywordCount = 15;
+    int keywordCount = sizeof(keywords) / sizeof(keywords[0]);
+
+    for (int i = 0; i < keywordCount; i++) {
+        if (strcmp(word, keywords[i]) == 0)
+            return 1; // It's a keyword
+    }
+    return 0; // Not a keyword
+}
+
+int main() {
+    char word[100];
+    char choice;
 
     do {
         printf("Enter a word: ");
         scanf("%s", word);
 
-        isKeyword = 0;
-        for (i = 0; i < keywordCount; i++) {
-            if (strcmp(word, keywords[i]) == 0) {
-                isKeyword = 1;
-                break;
-            }
-        }
-
-        if (isKeyword)
+        if (isKeyword(word))
             printf("'%s' is a C keyword.\n", word);
         else
             printf("'%s' is NOT a C keyword.\n", word);
