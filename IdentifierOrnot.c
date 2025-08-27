@@ -1,6 +1,6 @@
+//write a c program to test whether a given identifier is valid or not 
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h> // for isalpha, isdigit
 
 // Function to check if a word is a C keyword
 int isKeyword(char word[])
@@ -11,7 +11,7 @@ int isKeyword(char word[])
         "int", "long", "register", "return", "short", "signed", "sizeof",
         "static", "struct", "switch", "typedef", "union", "unsigned", "void",
         "volatile", "while"};
-    int totalKeywords = 32; // total keywords in the array
+    int totalKeywords = 32;
 
     for (int i = 0; i < totalKeywords; i++)
     {
@@ -34,7 +34,9 @@ int main()
         valid = 1;
 
         // Rule 1: first character must be a letter or underscore
-        if (!(isalpha(id[0]) || id[0] == '_'))
+        if (!((id[0] >= 'A' && id[0] <= 'Z') || 
+              (id[0] >= 'a' && id[0] <= 'z') || 
+              id[0] == '_'))
         {
             valid = 0;
         }
@@ -42,7 +44,10 @@ int main()
         // Rule 2: remaining characters must be letters, digits, or underscore
         for (i = 1; id[i] != '\0'; i++)
         {
-            if (!(isalnum(id[i]) || id[i] == '_'))
+            if (!((id[i] >= 'A' && id[i] <= 'Z') ||
+                  (id[i] >= 'a' && id[i] <= 'z') ||
+                  (id[i] >= '0' && id[i] <= '9') ||
+                  id[i] == '_'))
             {
                 valid = 0;
                 break;
@@ -68,7 +73,7 @@ int main()
         printf("Do you want to test another identifier? (yes/no): ");
         scanf("%s", choice);
 
-    } while (choice[0] == 'y' || choice[0] == 'N');
+    } while (choice[0] == 'y' || choice[0] == 'Y');
 
     printf("Thank you!\n");
     return 0;

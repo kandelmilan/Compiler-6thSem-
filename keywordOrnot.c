@@ -2,23 +2,19 @@
 #include <string.h>
 
 int isKeyword(const char *word) {
-    const char *keywords[] = {
-        "auto", "break", "case", "char", "const", "continue", "default",
-        "do", "double", "else", "enum", "extern", "float", "for", "goto",
-        "if", "inline", "int", "long", "register", "restrict", "return",
-        "short", "signed", "sizeof", "static", "struct", "switch", "typedef",
-        "union", "unsigned", "void", "volatile", "while", "_Alignas",
-        "_Alignof", "_Atomic", "_Bool", "_Complex", "_Decimal128",
-        "_Decimal32", "_Decimal64", "_Generic", "_Imaginary", "_Noreturn",
-        "_Static_assert", "_Thread_local"
-    };
-    int keywordCount = sizeof(keywords) / sizeof(keywords[0]);
+    char *keywords[] = {
+        "auto", "break", "case", "char", "const", "continue", "default", "do",
+        "double", "else", "enum", "extern", "float", "for", "goto", "if",
+        "int", "long", "register", "return", "short", "signed", "sizeof",
+        "static", "struct", "switch", "typedef", "union", "unsigned", "void",
+        "volatile", "while"};
+    int totalKeywords = 32;
 
-    for (int i = 0; i < keywordCount; i++) {
+    for (int i = 0; i < totalKeywords; i++) {
         if (strcmp(word, keywords[i]) == 0)
-            return 1; // It's a keyword
+            return 1; 
     }
-    return 0; // Not a keyword
+    return 0; 
 }
 
 int main() {
