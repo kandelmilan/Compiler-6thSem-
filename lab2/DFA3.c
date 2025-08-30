@@ -1,0 +1,1 @@
+//Write a c program to recognize string under a^*,a^*b^+ and abb
