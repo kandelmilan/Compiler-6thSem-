@@ -20,37 +20,22 @@ int main()
             case 0:
                 if (str[i] == '0')
                     state = 1;
-                else if (str[i] == '1')
-                    state = 0;
                 else
-                {
-                    printf("Invalid character detected!\n");
-                    return 1;
-                }
+                    state = 0;
                 break;
 
             case 1:
                 if (str[i] == '0')
                     state = 2;
-                else if (str[i] == '1')
-                    state = 0;
                 else
-                {
-                    printf("Invalid character detected!\n");
-                    return 1;
-                }
+                    state = 0;
                 break;
 
             case 2:
                 if (str[i] == '0')
                     state = 2;
-                else if (str[i] == '1')
-                    state = 0;
                 else
-                {
-                    printf("Invalid character detected!\n");
-                    return 1;
-                }
+                    state = 0;
                 break;
             }
             i++;
